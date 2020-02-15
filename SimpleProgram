@@ -1,0 +1,54 @@
+import java.awt.Button;
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+public class gui extends Frame{
+	Button close;
+	Button number;
+	L1 l1;
+	L2 l2;
+	
+	class L1 implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.exit(0);
+		}
+	}
+	
+	class L2 implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			int tmp = Integer.parseInt(number.getLabel());
+			tmp = tmp+1;
+			if ( tmp > 10) {
+				tmp = 10;
+			}
+			number.setLabel("" + tmp);
+		}
+	}
+	
+	public gui() {
+		setLayout(new GridLayout(1, 2));
+		setSize(400, 200);
+		l1 = new L1();
+		l2 = new L2();
+		close = new Button("Close");
+		number = new Button("0");
+		close.addActionListener(l1);
+		number.addActionListener(l2);
+		add(close);
+		add(number);
+	}
+
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		gui ne = new gui();
+		ne.show();
+	}
+
+}
